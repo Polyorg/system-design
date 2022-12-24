@@ -1,0 +1,64 @@
+steps:
+  - group: ':feelsgood: Build'
+    steps:
+      - label: ':feelsgood: Build'
+        key: 'build'
+        command: echo "Build"
+
+  - group: ':lint-roller: Lint'
+    steps:
+      - label: ':lint-roller: lint'
+        key: 'lint'
+        depends_on: 'build'
+        command: echo "lint" 
+
+  - group: ':test_tube: Tests'
+    steps:
+      - label: 'Unit'
+        key: 'unit'
+        depends_on: 'build'
+        commands:
+          - echo "lint" 
+
+      - label: 'Integration'
+        key: 'integration'
+        depends_on: 'unit'
+        commands:
+          - echo "lint" 
+
+      - label: ':coverage: Upload code coverage'
+        key: 'codecoverage'
+        depends_on:
+          - 'unit'
+          - 'integration'
+        command: 'echo coverage'
+        env:
+          CODECOV_TOKEN: '1889091e-d1e9-43c4-b10f-39d2cb4d5fa0'
+
+  - key: deploy-stg
+    label: ':heroku::man: Deploy to staging'
+    branches: 'main'
+    depends_on:
+      - 'build'
+    trigger: '${BUILDKITE_PIPELINE_SLUG}-staging'
+    build:
+      branch: '${BUILDKITE_BRANCH}'
+      commit: '${BUILDKITE_COMMIT}'
+      message: '${BUILDKITE_MESSAGE}'
+
+  - key: prod-manual-deploy
+    block: ':red_button: Click here to deploy to prod'
+    depends_on:
+      - 'build'
+    if: build.tag != null
+
+  - key: deploy-k8s-prod
+    if: build.tag != null
+    label: ':heroku::older_man: Deploy to prod'
+    depends_on:
+      - prod-manual-deploy
+    trigger: '$BUILDKITE_PIPELINE_SLUG-production'
+    build:
+      branch: '${BUILDKITE_BRANCH}'
+      commit: '${BUILDKITE_COMMIT}'
+      message: '${BUILDKITE_MESSAGE}'
