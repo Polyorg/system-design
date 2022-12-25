@@ -1,4 +1,4 @@
-# @poly/{{packageName}}
+# @poly/common
 
 A Quick description of the component
 
@@ -7,7 +7,7 @@ A Quick description of the component
 ## Installation
 
 ```sh
-yarn add @poly/{{packageName}}
+yarn add @poly/common
 # or
-npm i @poly/{{packageName}}
+npm i @poly/common
 ```

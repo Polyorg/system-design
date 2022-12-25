@@ -1,12 +1,12 @@
 {
-  "name": "@fab-ui/core",
+  "name": "@poly/theme",
   "version": "1.0.0",
-  "description": "Fabuolus UI core system",
+  "description": "The default theme for Poly Styles",
   "keywords": [
-    "core"
+    "theme"
   ],
   "author": "Nitin <nitinpanwar0802@gmail.com>",
-  "homepage": "https://github.com/nitintf/fab-ui#readme",
+  "homepage": "https://github.com/Polyorg/system-design.git#readme",
   "license": "MIT",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -20,8 +20,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nitintf/cfab-ui.git",
-    "directory": "packages/core"
+    "url": "git+https://github.com/Polyorg/system-design.git",
+    "directory": "packages/theme"
   },
   "scripts": {
     "build": "tsup src/index.ts --format=esm,cjs --dts",
@@ -29,5 +29,11 @@
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src/index.ts --format=esm,cjs"
+  },
+  "dependencies": {
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "@swc-node/jest": "^1.5.5",
+    "@swc/core": "^1.3.24"
   }
 }
