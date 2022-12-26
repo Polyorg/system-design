@@ -13,7 +13,7 @@ pnpm: &pnpm
   run:
     name: "Install pnpm package manager"
     command: |
-      curl -L https://pnpm.js.org/pnpm.js | node - add --global pnpm@7
+      curl -fsSL https://get.pnpm.io/install.sh | sh -
 
 save_cache: &save_cache
   save_cache:
