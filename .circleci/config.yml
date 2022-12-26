@@ -3,6 +3,22 @@ defaults: &defaults
     - image: circleci/node:16.13.0
   working_directory: ~/project
 
+restore_cache: &restore_cahce
+  name: Restore pnpm Package Cache
+  keys:
+    - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+
+run: &pnpm
+  name: Install pnpm package manager
+  command: |
+    curl -L https://pnpm.js.org/pnpm.js | node - add --global pnpm@7
+
+save_cache: &save_cache
+  name: Save pnpm Package Cache
+  key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+  paths:
+    - node_modules
+
 version: 2.1
 
 jobs:
@@ -10,6 +26,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - <<: *restore_cahce
+      - <<: *pnpm
+      - <<: *save_cache
       - run:
           name: "Build"
           command: "pnpm build"
@@ -17,6 +36,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - <<: *restore_cahce
       - run:
           name: "Lint"
           command: "pnpm format:check"
@@ -28,6 +48,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - <<: *restore_cahce
       - run:
           name: "Tests"
           command: "pnpm test"
@@ -36,6 +57,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - <<: *restore_cahce
       - run:
           name: "Pushing to github packages"
           command: "pnpm release"
