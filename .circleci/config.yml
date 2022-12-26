@@ -86,11 +86,11 @@ workflows:
     jobs:
       - build
       - format
-      - tests
+      # - tests
       - release:
           requires:
             - build
-            - tests
+            # - tests
             - format
           filters:
             branches:
