@@ -4,17 +4,17 @@ defaults: &defaults
   working_directory: ~/project
 
 restore_cache: &restore_cahce
-  name: Restore pnpm Package Cache
+  name: "Restore pnpm Package Cache"
   keys:
     - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
 
 run: &pnpm
-  name: Install pnpm package manager
+  name: "Install pnpm package manager"
   command: |
     curl -L https://pnpm.js.org/pnpm.js | node - add --global pnpm@7
 
 save_cache: &save_cache
-  name: Save pnpm Package Cache
+  name: "Save pnpm Package Cache"
   key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
   paths:
     - node_modules
