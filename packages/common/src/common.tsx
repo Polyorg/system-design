@@ -1,7 +1,6 @@
-import * as React from "react"
-
-export interface CommonProps {}
-
+export interface CommonProps {
+  name: string
+}
 export function Common(props: CommonProps) {
-  return <div />
+  return <div>{props.name}</div>
 }

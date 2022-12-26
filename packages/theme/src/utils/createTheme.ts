@@ -1,3 +1,5 @@
 import { Theme } from "../types"
 
-export default function createTheme(props: Theme) {}
+export default function createTheme(props: Theme) {
+  return props
+}
