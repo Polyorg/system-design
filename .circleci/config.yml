@@ -50,7 +50,7 @@ workflows:
           requires:
             - build
             - tests
-            - lint
+            - format
           filters:
             branches:
               only:
