@@ -13,7 +13,7 @@ pnpm: &pnpm
   run:
     name: "Install pnpm package manager"
     command: |
-      npm install -g pnpm@7
+      sudo corepack enable && corepack prepare pnpm@latest --activate
 
 save_cache: &save_cache
   save_cache:
