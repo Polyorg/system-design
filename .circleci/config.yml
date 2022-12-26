@@ -13,8 +13,7 @@ pnpm: &pnpm
   run:
     name: "Install pnpm package manager"
     command: |
-      curl -fsSL https://get.pnpm.io/install.sh | bash - 
-      source /home/circleci/.bashrc
+      npm install -g pnpm@7
 
 save_cache: &save_cache
   save_cache:
