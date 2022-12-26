@@ -13,7 +13,7 @@ pnpm: &pnpm
   run:
     name: "Install pnpm package manager"
     command: |
-      curl -fsSL https://get.pnpm.io/install.sh | sh -
+      curl -fsSL https://get.pnpm.io/install.sh | bash -
 
 save_cache: &save_cache
   save_cache:
