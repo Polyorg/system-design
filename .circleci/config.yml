@@ -51,7 +51,7 @@ jobs:
       - <<: *install_dep
       - <<: *save_cache
       - run:
-          name: "Lint"
+          name: "Prettier"
           command: "pnpm format:check"
       - run:
           name: "Lint"
