@@ -13,7 +13,7 @@ pnpm: &pnpm
   run:
     name: "Install pnpm package manager"
     command: |
-      sudo corepack enable && corepack prepare pnpm@latest --activate
+      sudo corepack enable && corepack prepare --activate pnpm@latest
 
 save_cache: &save_cache
   save_cache:
