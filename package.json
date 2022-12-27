@@ -1,7 +1,12 @@
 {
-  "name": "fab-ui",
+  "name": "@poly/styles",
   "version": "1.0.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Polyorg/system-design.git"
+  },
+  "author": "Nitin Panwar <nitinpanwar0802@outlook.com>",
   "workspaces": [
     "packages/*"
   ],
@@ -18,7 +23,11 @@
     "clean:storybook": "rm -rf node_modules/.cache/storybook",
     "storybook": "pnpm build:addon && start-storybook -p 6006",
     "build:storybook": "pnpm build:addon && build-storybook && sb extract",
-    "serve:storybook": "pnpx serve storybook-static"
+    "serve:storybook": "pnpx serve storybook-static",
+    "release": "changeset release",
+    "publish": "changeset publish",
+    "release:dev": "changeset release --snapshot dev",
+    "publish:dev": "changeset publish --tag dev"
   },
   "engines": {
     "node": ">=16.0.0"
@@ -35,9 +44,15 @@
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "@babel/runtime": "^7.18.9",
+    "@changesets/cli": "^2.26.0",
+    "@changesets/types": "^5.2.1",
     "@storybook/addon-a11y": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-interactions": "^6.5.15",
+    "@storybook/addon-links": "^6.5.15",
     "@storybook/addon-storysource": "^6.5.10",
+    "@storybook/builder-webpack5": "^6.5.15",
+    "@storybook/cli": "^6.5.15",
     "@storybook/react": "^6.5.10",
     "@storybook/theming": "^6.5.10",
     "@swc-node/jest": "^1.5.5",
